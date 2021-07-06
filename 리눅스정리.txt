@@ -1,0 +1,226 @@
+명령어를 여러개 알아둬야 여러 상황에서 대처가 가능하다
+putty로 로그인하는법, ppk키 만들고,이것저것
+
+pwd: 현재디렉토리 파악
+
+홈디렉토리로가려면 cd ~, cd $HOME 등
+ls 파일확인
+
+ls -al 모든파일확인 왼쪽에서는 파일의 소유주, 오른쪽은 그룹
+
+ls -lta 시간순으로 정렬해서 파일표시
+
+ls -ltr 가장최근에 변경한 파일 마지막에 표시
+
+mkdir test로 test폴더생성
+
+touch afile afile파일 생성
+
+man pwd 매뉴얼페이지
+
+3일차 파일 접근허가와 sudo 명령으로 root권한 획득하기, timedatectl로 시간대확인
+
+ls -l /etc/shadow 명령으로 파일접근허가 확인
+
+cat /etc/shadow 명령으로 파일읽기 시도
+sudo less /etc/shadow 명령으로 파일읽기 시도
+
+cat /etc/shadow 쳐보니 permission denied가나온다.
+
+
+uptime , man sudo , sudo -i, id 하고나서 exit입력 권한주기
+
+또는 sudo /bin/bash
+컨트롤 d누르면 빠져나오기가능
+
+sudo  less/var/log/auth.log
+이상하다 싶으면 로그보고하면됌
+드가서 /sudo치면 sudo 명령어친 로그나옴 
+
+sudo nano? 이건뭘가. 
+
+sudo nano /etc/hostname? 
+sudo nano /etc/hosts 명령으로 기존 컴퓨터 이름 변경
+
+이후 지운다음 linuxchallenge 이후 컨트롤 x누르면 버퍼저장하고나감
+
+단계4 시간대 변경
+
+timedatectl list-timezones | less 이후 /Seoul 치면 Asia/Seoul로나옴
+
+시간대 변경하면안됌, aws는 전세계 월드와이드하게 되어있음. UTC로 수집함
+타임존바꾸면 시간대 틀려짐. 모니터링하다 시간이 안맞음. 클라우드 서비스 쓸때는
+timezone을 절대로 바꾸면안돼
+
+4일차 온라인 저장소에서 새로운 애플리케이션 설치한다.
+cli랑 다른느낌으로 쓸 수있는 도구 알려드림
+
+미드나잇커맨드
+
+more/less 사용과 탭/화살표 사용법
+
+아파치 설치
+sudo apt install apache2
+sudo systemctl stop apache2
+
+sudo systemctl start apache2
+
+sudo systemctl status apache2
+
+cd /etc/apache2/
+ls -al
+여러가지파일들이보인다.configuration파일 설정파일
+vi apache2.conf
+
+vim나올떄는 esc 두번누르고 :q
+
+cd conf-enabled/ 들어가서
+
+ls확인. charset.conf, security.conf 등이 있음
+
+vi charset.conf, vi localized-error-pages.conf등
+
+apache2에서  cd sites-enabled/ 들어가보고 ls친다음에
+
+000-default.conf 란 파일발견
+vi 000-default.conf 입력
+documentRoot가보임. 기본80번포트
+
+vi index.html
+
+cd /var/log/apache2/
+
+vi /etc/services로 들어간다음
+
+/80번쳐보면 http는 80번포트
+
+vi access.log
+
+public ipv4 복사해서 주소 복붙했는데 안들어가진다 왜그럴까
+
+aws홈페이지에서 인바운드 규칙편집을들어간다.
+http 인바운드 생성한다. anywhere로
+
+8일차 서버매니저에게 필요한 문자열 grep
+
+cat/var/log/apache2/access.log
+
+less/var/log/apache2/access.log
+
+sudo less/var/log/auth.log sudo 사용찾기
+tail -f/var/log/apache2/access.log
+
+cat 파일결합하는것.
+
+
+9일차. 서비스 포트 관리
+
+0:00 서비스 포트 관리 소개
+2:05 단계 1) netstat, ss, nmap을 사용한 서비스 포트 확인 
+12:30 단계 2) netcat을 사용한 간단한 웹 서버 만들고 AWS 보안 그룹을 설정해 외부에 서비스하기
+
+
+apt install nmap
+nmap localhost 원격호스트에서는 절대로 사용하지않는다.
+
+while true; do echo -e "HTTP/1.1 200 OK\n\n $(date)" | nc -l localhost:8090; done &
+
+
+12일차 sftp로 복사하기? aws에서는 sftp사용
+
+winscp 다운로드후 설치 초보자를 위한 [리눅스 업스킬 도전 제 12편] winscp와 sftp를 사용해 파일을 올리고 내리는 방법을 살펴봅시다.
+
+
+
+
+21일차
+[리눅스 업스킬 도전 #21-b] (도커 컨테이너의 기반이 되는) chroot 소개
+
+busybox 빌드와 설치
+
+먼저 mkdir chroot_example
+cd chroot_example/
+그리고 chroot_example에서 
+
+wget https://busybox.net/downloads/busybox-1.32.0.tar.bz2
+tar xvpfj busybox-.132.0.tar.bz2
+head INSTALL 하면 make menuconfig 활용해라 필요한 여러가지를 빌드해라
+
+
+cd busybox-1.32.0
+head INSTALL
+
+sudo apt-get install libncurses5-dev libcursesw5-dev
+
+busyvox의 목적은 ms cd pwd 등 여러 명령어를 다이어트해서
+bin파일에 모두 다 넣는다. 프로그램의 중첩되는것을 막기위해서 만든것
+
+
+root파일 시스템 생성
+
+
+리눅스 업스킬도전 22
+
+EC2 인스턴스에서 계정 추가후 공개 키 등록 방법
+
+협업할때는 새로만든 사용자 SSH키를 등록해야된다.
+
+새로키를 발급해서 이 키로 공개키를 알아내고 등록하는 절차
+
+키마다 특정 권한을 주기 위해.
+
+aws 상에서 Key pair에서 key를 하나 더 생성한다
+putty key gen 에서 jaypark.ppk를 로드하고 공개키영역을 복사한다
+sudo bash
+su - jaypark
+logout
+exit
+
+cd ~
+
+ls -al .ssh 디렉토리 권한 확실하게 인지해야한다. 
+-rw----
+-rw-rw-r---
+-rwxr-xr-x
+
+chmod go-rwx .ssh^C
+ls -al ssh
+
+chmod go-rwx .ssh
+cd .ssh
+
+vi authorized_keys
+들어간후 
+오픈 ssh키를 붙여넣는다.
+
+이후 chmod go-rwx authorized_keys
+
+new session해서 다른 키를 사용해서 로그인 해본다.
+session은 jaypark으로 추가.
+들어가진다. 암호 없이 그냥 접근이 돼었다.
+key gen에서 passphrase를 안 정했다.
+
+load private key
+
+마지막차 notepad+++ 편집기로 EC2의 원격호스트의 파일 편집하기.
+
+NOTEPAD 설치후, 플러그인 관리에서 NppFTP 설치 왜 설치가안돼 시발
+
+방송에 사용한 실제 실습 자료는 다음을 참고한다:
+
+단계 1: 플러그인 설치
+플러그인 --> 플러그인 관리 --> 사용가능 탭에서 NppFTP 설치
+단계 2: 플러그인 활성화와 원격 호스트 등록
+설치 후 플러그인 --> NppFTP --> Show NppFTP window
+우측 NppFTP 영역에서 톱니 바퀴 누르고, Profile settings
+Profile settings 대화상자에서 Add new 누르고 프로파일 이름을 지정
+Connection 탭의 Hostname에 EC2 IP 주소, Connection Type을 SFTP, Port는 22번 그대로, username을 ubuntu(또는 ec2-user)로 설정
+Authentication 탭의 Try private key file authentication에 체크박스를 켜고, Private key file에 EC2의 개인키(주의: ppk 형식이 아니라 pem 형식!)를 설정
+Close를 눌러 닫고 나온다
+우측 NppFTP 영역에서 툴바 가장 마지막 아이콘(Show message window)을 눌러 하단의 Output 영역을 활성화(접속시 문제가 생기면 로그를 확인할 수 있음)
+단계 3: 테스트
+우측 NppFTP 영역에서 접속 아이콘을 누르고 앞서 지정한 프로파일 이름을 선택하고 암호를 입력하면(pem 파일의 기본 암호는 비어 있으므로 그냥 OK) 로그인
+원하는 파일을 더블클릭하면 편집 창에 뜨고, 수정 후 저장하면 자동으로 서버로 올라감
+참고: 위와 같은 방법은 vi와 같은 편집기에 익숙하지 않을 경우에 사용하는 패턴이며, VSCode, Atom, 이클립스, 서브라임 등 다양한 IDE(또는 편집기)에서 응용 가능하다!
+
+개인적으로 NOTEPAD같은걸로 강의를 진행했으면 더 거부감없고 좋았을것을..
