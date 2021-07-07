@@ -13,3 +13,11 @@
 reference : https://www.youtube.com/watch?v=KTb76yb2Y7A&list=PLdntWJk2tJPLqMxhxCNX7aB0Gm52i5RFz&ab_channel=%EB%B0%95%EC%9E%AC%ED%98%B8
 
 LINUX BASIC STUDY
+
+CS지식도 필요 할거 같아서 공부중인데 너무  양이 많고 복잡해서 한 레파지토리에 짱박기로 결정
+
+TCP/IP 공부 열혈 TCP/IP 참조
+
+링크: https://1d1cblog.tistory.com/320?category=925184
+
+정석용의 TCP/IP 프로그래밍: https://www.youtube.com/watch?v=p3giFcDeCjE&list=PL7mmuO705dG265DxvC-oZgKViaRGt2-eS&index=1&ab_channel=%ED%94%84%EB%A6%AC%EB%A0%89
