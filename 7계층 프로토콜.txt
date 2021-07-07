@@ -1,0 +1,73 @@
+소켓통신. 채팅프로그램 만들기로 배운다.
+
+데이터 보내는형식을 만들면 그것이 프로토콜이됀다. 프로그램 만드는 사람 마음이다.
+7계층은 종류가많음 HTTP정도.
+HTTP메소드 요청, 프로토컬 헤더 포맷, HTTP 응답 프로토콜 등을 공부하게된다.
+
+짜여져 있는 틀까지만 공부를 하면 된다.
+
+HTTP 1.0의 특징. 연결 수립 동작, 연결 해제의 단순함이 특징
+HTML 문서를 전송 받은 뒤 연결을 끊고 다시 연결하여 데이터를 전송한다.
+
+1.TCP 3WAY HANDSHAKE 캡슐화돼서 
+
+2.HTTP 요청
+응답한번 받으면 연결 종료
+
+다시 또 HANDSHAKE하고 또 요청 
+
+요즘은 1.1을 많이쓴다.
+
+HTTP의 요청 프로토콜의 구조. 
+
+request line, headers, 공백, Body  요청 프로토콜 구조.
+
+옵션들이 헤더에 많이 붙는다. 
+
+맨위에 request line 요청 타입 / 공백/ URI / 공백 / HTTP 버전
+
+요청타입과 URI 매우 중요.
+
+요청 타입의 종류. GET 문서읽어오기, HEAD CLIENT가 문서에대한 특정 정보를 원할경우
+POST SERVER에게 어떤 정보를 전송
+PUT SERVER에 특정 자원을 업로드
+
+PATCH PUT과 비슷함.
+
+클라이언트가 웹사이트의 자원을 COPY하고 MOVE DELETE할일은없다.
+
+OPTION도 잘 안씀 요즘 PUT도 잘안쓴다. PUT쓰게되면 서버가 털릴수있게된다.
+
+GET POST가 가장 중요
+POST에서 패킷캡쳐 안할수도있는것. 예를 들면 로그인할때 ㅇㅇ
+
+URI란? 요새는 URI를 많이쓴다.
+인터넷 상에서 특정 자원을 나타내는 유일한 주소이다
+URI 구조는 scheme://host[:port][/path][?query]
+ftp: // IP주소 : 포트 / 파일이름
+http: // IP 주소 :포트 / 폴더이름 /파일이름 
+도메인 주소.
+
+
+응답 프로토콜 구조
+
+STATUS LINE, HEADERS 공백, BODY로 구조.
+
+BODY부분에 JS, HTML, 동영상, 그림파일 등등 전부 BODY에 포함되서 전송된다.
+
+STATUS LINE : HTTP버전/ 상태코드 / 상태문구. 
+코드종류 100~199 단순정보
+
+200 CLIENT 요청성공
+
+300~399 CLIENT의 요청이 수행되지안하 다른 URL 로 재지정
+
+500~599 SERVER의 오류, CLIENT ㅇ청 수행불가
+
+400~499 CLIENT 요청이 불완전하여 다른정보 필요.
+
+HTTP 헤더? CONTENT-LENGTH와 CONTENT TYPE
+
+COOKIE, HOST, USERAGENT
+HOST는 요청된 URL에 나타난 호스트명을 상세하게표시 HTTP 1.1에선 필수
+쿠키와 세션, 서버로 부터 받은 쿠키를 다시 서버에게 보내준다.
