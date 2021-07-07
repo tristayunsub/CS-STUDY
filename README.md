@@ -21,3 +21,5 @@ TCP/IP 공부 열혈 TCP/IP 참조
 링크: https://1d1cblog.tistory.com/320?category=925184
 
 정석용의 TCP/IP 프로그래밍: https://www.youtube.com/watch?v=p3giFcDeCjE&list=PL7mmuO705dG265DxvC-oZgKViaRGt2-eS&index=1&ab_channel=%ED%94%84%EB%A6%AC%EB%A0%89
+
+네트워크 기초 with WIRESHARK: https://www.youtube.com/watch?v=Av9UFzl_wis&list=PL0d8NnikouEWcF1jJueLdjRIC4HsUlULi&ab_channel=%EB%94%B0%EB%9D%BC%ED%95%98%EB%A9%B4%EC%84%9C%EB%B0%B0%EC%9A%B0%EB%8A%94IT
