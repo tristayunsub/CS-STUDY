@@ -23,3 +23,10 @@ TCP/IP 공부 열혈 TCP/IP 참조
 정석용의 TCP/IP 프로그래밍: https://www.youtube.com/watch?v=p3giFcDeCjE&list=PL7mmuO705dG265DxvC-oZgKViaRGt2-eS&index=1&ab_channel=%ED%94%84%EB%A6%AC%EB%A0%89
 
 네트워크 기초 with WIRESHARK: https://www.youtube.com/watch?v=Av9UFzl_wis&list=PL0d8NnikouEWcF1jJueLdjRIC4HsUlULi&ab_channel=%EB%94%B0%EB%9D%BC%ED%95%98%EB%A9%B4%EC%84%9C%EB%B0%B0%EC%9A%B0%EB%8A%94IT
+
+
+자료구조 학습: https://www.youtube.com/watch?v=xT-5BbWQw9o&list=PLwaVnP-dAv34bS6kii-LPP-u9i7F9uM5a&index=1&ab_channel=T.SteveTVwithJJ-%EC%A0%95%EB%B3%B4%EC%BB%B4%ED%93%A8%ED%84%B0%2C%EC%A0%95%EC%BB%B4%2C%EC%A0%84%EC%82%B0%EC%A7%81
+
+컴퓨터 구조는 학교에서 수강
+
+운영체제
