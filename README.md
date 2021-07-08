@@ -29,4 +29,5 @@ TCP/IP 공부 열혈 TCP/IP 참조
 
 컴퓨터 구조는 학교에서 수강
 
-운영체제
+운영체제: https://www.youtube.com/watch?v=k02in3xZvKM&list=PLwaVnP-dAv37NpHyLq6091PHbBm2IVbdA&ab_channel=T.SteveTVwithJJ-%EC%A0%95%EB%B3%B4%EC%BB%B4%ED%93%A8%ED%84%B0%2C%EC%A0%95%EC%BB%B4%2C%EC%A0%84%EC%82%B0%EC%A7%81
+
