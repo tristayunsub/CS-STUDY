@@ -31,3 +31,8 @@ TCP/IP 공부 열혈 TCP/IP 참조
 
 운영체제: https://www.youtube.com/watch?v=ipJ7DPzYBk0&list=PLBrGAFAIyf5rby7QylRc6JxU5lzQ9c4tN&index=38&ab_channel=HPCLab.KOREATECH
 한기대 교수님 강의
+
+운영체제 실제사례 강의리스트: https://youtu.be/pyOJDBphHkI
+데드락, 세마포어, 은행가 알고리즘 등..
+
+어렵다
