@@ -27,7 +27,7 @@ TCP/IP 공부 열혈 TCP/IP 참조
 
 자료구조 학습: https://www.youtube.com/watch?v=xT-5BbWQw9o&list=PLwaVnP-dAv34bS6kii-LPP-u9i7F9uM5a&index=1&ab_channel=T.SteveTVwithJJ-%EC%A0%95%EB%B3%B4%EC%BB%B4%ED%93%A8%ED%84%B0%2C%EC%A0%95%EC%BB%B4%2C%EC%A0%84%EC%82%B0%EC%A7%81
 
-컴퓨터 구조는 학교에서 수강
+컴퓨터 구조는 학교에서 2학기때 수강
 
-운영체제: https://www.youtube.com/watch?v=k02in3xZvKM&list=PLwaVnP-dAv37NpHyLq6091PHbBm2IVbdA&ab_channel=T.SteveTVwithJJ-%EC%A0%95%EB%B3%B4%EC%BB%B4%ED%93%A8%ED%84%B0%2C%EC%A0%95%EC%BB%B4%2C%EC%A0%84%EC%82%B0%EC%A7%81
-
+운영체제: https://www.youtube.com/watch?v=ipJ7DPzYBk0&list=PLBrGAFAIyf5rby7QylRc6JxU5lzQ9c4tN&index=38&ab_channel=HPCLab.KOREATECH
+한기대 교수님 강의
