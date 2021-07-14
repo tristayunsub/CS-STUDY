@@ -39,4 +39,6 @@ TCP/IP 공부 열혈 TCP/IP 참조
 운영체제 실제사례 강의리스트: https://youtu.be/pyOJDBphHkI
 데드락, 세마포어, 은행가 알고리즘 등..
 
+https://jhnyang.tistory.com/132?category=815411
+
 어렵다
