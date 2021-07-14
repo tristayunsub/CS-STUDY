@@ -42,3 +42,5 @@ TCP/IP 공부 열혈 TCP/IP 참조
 https://jhnyang.tistory.com/132?category=815411
 
 어렵다
+# EH 현장프로젝트 VERILOG HDL을 통한 FPGA설계
+SPI MEMORY CONTROLLER 구현을 통해 회로 작동원리 이해 및 MODELSIM으로 테스트까지
