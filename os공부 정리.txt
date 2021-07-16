@@ -1,0 +1,459 @@
+chapter 4 process synchronization and mutual exclusion
+
+process synchronization 동기화
+다중 프로그래밍 시스템. 여러 개의 프로세스들이 존재, 프로세스들은 서로 독립적으로 동작
+공유 자원 또는 데이터가 있을 때, 문제 발생 가능.
+어떤 자원을 a와 b가 동시에 사용하려하면 뭔가 문제가 발생할 가능성 이 있다.
+A라는사람과 B라는 사람이 동시에 그림을 그린다하면. 대화를 나눠서 약속을 정의한다.
+이런 대화를 동기화 싱크로나이제이션이라한다. 프로세스들이 서로 동작을 맞추는 행위
+
+A와 B라는 프로세스들은 어떻게 동작하는지 잘 모른다. 비동기적, 
+병행적 concurrent 여러 개의 프로세스들이 동시에 시스템에 존재.
+
+병행 수행중인 비동기적 프로세스들이 공유자원에 동시 접근할때 문제가 발생 할 수 있음.
+
+용어 
+
+terminologies shared data(공유데이터?) 여러 프로세스들이 공유하는 데이터
+
+critical section(임계 영역) 공유 데이터를 접근하는 코드 영역 
+
+mutual exclusion(상호배제) 둘 이상의 프로세스가 동시에 critical section에 진입하는 것을 막는 것
+
+critical section과 데이터를보자 
+
+sdata <- sdata+1; 0 sdata, 데이터에다 1을 더해주는 영상
+
+Pi,와 Pj가 concurrent하게 둘다 똑같은 코드넣는다 그럼 메모리에 뭐가들어갈까?
+
+2가들어가길 기대한다 우리는 근데 꼭그러진않다. 기계어 명령의 특성.
+machine instruction attribute. atomicity, indivisible 한 기계어 명령의 실행 도중에
+no interrupt, 
+
+Assembly s=s+1, Load R1, sdata, Add Ri,1 storeRi,sdata
+
+cpu라는 것은 안에 register를 가지고 cpu의 작업은 전부 register로 이뤄진다.
+
+실제 동작은 메모리상에있는 데이터를 레지스터상에 데려와서 작업후 그 결과를 메모리에 쓴다.
+
+Ri에 0들어가고, 1 더하고 저장하라한다. 둘다하면 이게 2가되냐?
+1이 들어간다 2가들어가는게아니라.
+명령 수행과정이 1-> 2-> 3-> A>B>C 하면 결과 2 , 1>2>A>B>C>3
+RACE CONDITION 달리는 순서에따라 결과 달라짐.
+
+그럼 우리가 원하는 결과 도출하려면? 상호배제 라는 것을 해야한다.
+
+primitives exclusion mutual 기본연산.  
+
+enterCS() primitive
+critical section 진입 전 검사
+
+다른 프로세스가 critical section 안에 있는지 검사
+
+ exitCS() primitive
+critical section을 벗어날 때의 후처리 과정
+
+critical section을 벗어남을 시스템이 알림.
+
+enterCs와 exitCs 나올땐 어떻게 해야되냐. 불러줘야함. 
+
+requirements for ME primitives
+
+mutual exclusion 상호배제, critical section에 프로세스가 있으면 다른 프로세스의 진입 금지
+
+progress조건? (진행) 아무도없는상태에서 a와 b가 와서 들어오려고하는데 a가 b를 못가게 막는다
+CS에 진입하는 것을 방해하면 안된다.
+
+BOUNDED WAITING 한정대기?
+프로세스의 CS진입은 유한시간 내에 허용되어야함.
+
+TWO PROCESS MUTUAL EXCLUSION turn 
+P0 turn이 1이라면.  턴을 계속 토스해준다. 3가지 조건으로 생각해보자
+
+최초의 턴은 0번턴이다. 0번이 들어간 후에야 1번이 들어감.
+
+1번이 뺑뺑 돌다가. 죽어버림. progress 조건 위배. why?
+
+P0이 critical section에 진입하지 않는 경우, 한 process가 두번 연속 cs에 진입 불가
+버전 1은 위배된다.
+
+버전2는 어떨까 flag로썼다 turn이아니라. 깃발을준다? 내가 들어갈거면? 깃발을 들고 나오면 깃발 내린다는 전략
+
+flag[0] flag[1] 둘다 false while(flag[1]) do endwhile; flag[0] <- true;
+
+pre-emption 와서 봤더니.  
+progress bounded waiting 조건 위배. 
+
+
+SW Solutions?
+
+Dekker's algorithm
+Dijkstra's algorithm이 존재한다.
+
+Two process MUTUAL EXCLUSION 보장하는 최초의 알고리즘
+
+FLAG 두개와 턴 한개로 써본다
+
+P0 
+flag[0] < true;
+while(flag[1]) do
+if(turn =1) then
+begin
+flag[0] <false
+while(trun=1) do
+endwhile;
+flag[0]<true;
+end;
+endwhile
+
+
+turn<1;
+flag[0]<false;
+
+P1
+flag[1] < true
+while(flag
+
+아무도 안들어갔을때 turn이 0번일때, 
+N-process mutual exclusion 
+다익스트라 알고리즘 flag[]변수
+
+idle 프로세스가 임계 지역 진입을 시도하고 있지 않을때
+want-in 프로세스의 임계지역 진입 시도 1단계 일 때
+in-CS 프로세스의 임계지역 진입 시도 2단계 및 임계 지역 내에 있을 때
+
+
+SW 솔루션은 좀 비효율적이다 .
+
+HW Solution
+
+Test and Set이라는 instruction을 만들어줌. 실행중에 다른 interrupt 받지않는게 보장된다.
+문제가 간단하게 풀림. 
+boolean TestandSet (boolean *target) {
+boolean temp = *target; //이전 값 기록
+*target=true; //true로 설정.
+return temp; //값 반환
+}
+
+ME with TAS instruction. lock이라는 변수. 초기값은 false
+
+while (TAS(lock) do
+endwhile. 
+critical section 
+True 가 리턴된다. 
+3개 이상의 프로세스일 경ㅇ우 bounded waiting 조건 위배 한명이 가서 일하고있고
+2 3번이 돈다. 1번이 나가면서 false로 바꾸면 2번이들어갈지 3번이 들어갈지 모른다.
+3번이 들어갓다가 그와중에 4번이오고 한명이 계속 못들어가면 안된다.
+
+N개짜리 푸는방법?
+
+do {
+waiting[i] = true; 내가 기다려도될까
+key =true;
+
+while (waiting [i] && key)
+key = TestAndSet(&lock);
+waiting[i] = false;
+
+//임계영역 /탈출영역
+
+j=(i+1) % n; 나보다 번호가큰애들을 본다.
+while((j !=i) && !waiting[j])
+ j = (j+1) % n;
+
+if (j = i )
+lock = false;
+
+else
+waiting [j] = false.
+} while (true);
+
+장점은 구현이 간단하지만 busy waiting 문제 
+이걸 해결하기 위해 대부분의 os가 사용하는 세마포어라는것.
+
+Spinlock 정수형 변수.
+
+초기화 P(), V()연산으로만 접근가능.  OS Support 보장. 
+
+P(S) 에서 s는 물건의 개수
+p는 물건을 꺼내가는것. 
+V는 물건을 집어넣는것.
+P(S) {
+while (S<0) do
+endwhile;
+S <- S-1;
+}
+
+V(S){
+S<- S +1;
+}
+active =1 : 임계 지역을 실행중인 프로세스가 없다
+active = 0 : 임계 지역을 실행중인 프로세스가 있다.
+
+Spinlock은 문제가 있다. CPU가 하나이다. Pi가 들어와서 0으로 만들어놓고 
+일하다 멈추게되면 Pj가 안으로 들어가면 Pi가 기다리고있는데. p는 기다리는 과정도 끝나지않아서 뻉뱽돔
+Pi다시 들어가고시픈데 Pj가 돌고있는데 PI는 멈추지않음. 돌면서 자원을 못받는다. 결국 둘 다 일을 못하게된다. 
+오우 쉣. 그래서 멀티 프로세서 시스템에서만 사용가능 CPU 8개 2개 이런거.
+
+Spinlock 로직이 성립한다. Busy waiting 소프트웨어 솔루션. 
+이걸 해결 semaphore
+
+음이 아닌 정수형 변수 (S) 
+초기화 연산, P(), V()로만 접근가능. 
+Probern: 검사 ,V:verhogen(증가)
+
+임의의 s변수 하나에 ready queue 하나가 할당 됨.
+
+binary semaphore 
+S가 0과 1 두 종류의 값만 갖는 경우
+상호 배제나 프로세스 동기화의 목적으로 사용
+
+상호배제문제
+Counting semaphore
+S가 0이상의 정수값을 가질 수 있는 경우
+Producer-consumer 문제등을 해결하기 위해 사용
+생산자-소비자 문제.
+Reader-writer 문제
+Dining philosopher problem
+
+
+P연산
+else wait on the queue Q; S에 할당된 Q에서 기다린다. Q라는 대기실. 
+
+V연산
+waiting process on Q
+wakeup one of them;
+else S < S+1;           스핀락은 물건이 없으면 뱅뱅돈다. 세마포는 물건이 없으면 편하게 대기하게한다. 일이 끝나면 깨워줌
+모두 INDIVISIBLE연산 나눌수없다
+OS SUPPORT, 뭔가 좀 더 효율적으로 보인다.
+
+sync라는 세마포 변수두고. Pj가 값을 들고있을때. pj통과하고나서 pi꺠워서 들어간다.
+
+
+Producer-consumer 생산자 프로세스 : 메시지를 생성하는 그룹, 소비자는 메세지를 전달받는 그룹
+
+컴파일러 -> 어셈블리코드 -> 어셈블러
+
+buffer에 쌓아두면 consumer가 쓴다. 물건 놓는 도중에 동기화가 필요하다.
+
+single buffer 공간이 1인 경우. 물건을 놓을때 가져가면안되고, 꺼내가는 중에 물건을 놓을수 없다.
+한번에 한명만 접근해야한다.
+
+
+EventCount/Sequencer 세마포의 문제점. busy waiting 문제는 해결했으나. waiting을 깨울때 one of them 그렇기에 누가 될지 모른다.
+순서에 맞춰서 깨워주자. 은행의 번호표와 비슷한 개념이다.
+
+Sequencer 정수형 변수, 생성시 0으로 초기화, 감소하지않음, 발생사건들의 순서유지, ticket 연산만으로 접근가능
+
+ticket(s) 현재까지 ticket()연산이 호출된 횟수를 반환 indivisible operation
+
+Eventcount 특정 사건의 발생횟수 기록, read, advance, await 연산으로만 접근 가능
+번호가 eventcount
+
+read :현재 eventcount 값 반환
+
+advance E< E+1
+E를 기다리고있는 프로세스 깨운다.
+
+AWAIT (E,v)
+v는 정수형 변수, if(E<v)이면 E에 연결된 Qe에 프로세스 전달(push) 및 CPU scheduler 호출
+
+
+
+
+
+
+
+
+
+
+CHAPTER5 교착상태 DEADLOCK RESOLUTION
+어느 프로세스도 자기가 원하는 자원을 얻을 수 없다.
+Blocked/Asleep state
+프로세스가 특정 이벤트를 기다리는 상태
+프로레스가 필요한 자원을 기다리는 상태
+
+Deadlock state 프로세스가 발생 가능성이 없는 이벤트를 기다리는 경우
+프로세스가 deadlock 상태에 있음, 시스템 내에 deadlock 에 빠진 프로세스가 있는 경우
+시스템이 deadlock 상태에 있음. 
+
+starvation이랑 deadlocked랑 다르다. starvation은 ready에 있고 asleep은 deadlocked 가능성이 zero
+
+자원이라는 단어가 계속 등장한다. 
+
+선점 가능 여부에 따른 분류
+
+preemptible resources 선점 당한후 돌아와도 문제가 발생하지 않는 자원 processor나 메모리등
+
+non-preemptible resources 선점 당하면 이후에 문제가 발생하는 자원 disk drive등
+선점후 write operation 했따. disk 같은 경우 내가 어디다 기록하는데 누가 그걸 뺏어감 그럼 데이터가 날라감
+usb에서 복사하고잇는데 usb뽑아버리는 거랑 같음.
+
+
+Deadlock Model deadlock 발생의 예
+
+2개의 프로세스와 2개의 자원
+그래프모델 프로세스노드와 자원노드가있다
+
+state transition model 
+2개의 프로세스와 atype의 자원2개unit 존재
+프로세스는 한번에 자원 하나만 요청/반납 가능.
+
+so deadlock 발생 필요조건
+
+deadlock prevention 예방 
+
+자원의 특성
+exclusive use of resources 혼자쓰는 
+non-preemptible resources 선점 당하지 않는 자원.
+hold and wait 자원을 하나 hold하고 다른 자원 요청
+Circular wait 원을 이루어야함.
+ 프로세스의 특성
+조건중 하나만 없애도 절대 발생하지않음
+Deadlock 발생 필요 조건.
+
+예방,회피, 탐지 및 복구에 대하여 학습한다.
+
+1.모든 자원을 공유 허용
+exclusive use of resource 조건 제거하지만 현실적으로 불가능
+
+2.모든 자원에 대한 선점 허용
+현실적으로 불가능, 그러나 유사한 방법으로 프로세스가 할당 받을 수 없는 자원을 요청한 경우,
+기존에 있던 자원을 모두 반납하고 작업취소. 심각한 자원낭비 발생-> 비현실적이다.
+
+필요 자원 한번에 모두 할당 (Total allocation)
+Hold and wait 조건 제거, 자원 낭비 발생. 필요하지 않은 순간에도 가지고 있음.
+무한 대기 현상 발생 가능. 필요하지 않는 순간에도 가지고 있음.
+
+4.circular wait 조건 제거
+totally allocation을 일반화 한 방법
+
+자원들에게 순서를 부여
+프로세스는 순서의 증가 방향으로만 자원요청 가능
+자원 낭비 발생
+
+자원 낭비 최소화하는데 좋은것 회피 방법, 또는 데드락을 허용하는대신 발견하고 회복시키는것
+
+예방은 솔직히 현실성이 없다. 골치아프네
+
+
+deadlock avoidance 
+
+시스템의 상태를 계속 감시, 시스템이 deadlock 상태가 될 가능성이 있는 자원 할당 요청 보류
+중요 . 시스템을 항상 safe state로 유지. 안전한 상태로 유지합시다
+
+safe state
+모든 프로세스가 정상적 종료 가능한 상태. safe sequence가 존재. deadlock 상태가 되지 않을 수 있음을 보장
+
+unsafe state. 반드시 발생하는건 아니지만 가능성이 존재.
+
+가정: 프로세스의 수가 고정됨, 자원의 종류와 수가 고정됨, 프로세스가 요구하는 자원 및 최대 수량을 알고 있음
+프로세스는 자원을 사용 후 반드시 반납한다.
+
+다익스트라 뱅커스 알고리즘. 데드락 avoidance를 위한 간다한 이론적 기법
+한종류의 자원이 여러개, 시스템을 항상 safe state로 유지.
+
+10 resource units, 3 processes. 
+내가 10마눤이있는데 친구들 3명이 돈빌려달라함. 1ㅁ번한텐 1만원 2번 2 3에는 3만원씩
+빌려줌. 친구들이 앞으로 더 빌려달라고함. 여기서 한가지 가정: 얘네가 다 믿을만 하다.
+돈을 빌려주면 좀이쓰면 돈을 갚음. 누구한테 먼저 돈을 줘야 모두가 만족할까!
+
+available resource units:2
+
+실행 종료 순서 : P1 -> P3 -> P2 순서가 존재하느냐 존재한다. 하나만 존재해도 SAFE STATE다
+현재 상태에서 안전 순서가 하나이상 존재하면 안전 상태임.
+
+Unsafe state 임의의 순간에 세 프로세스들이 모두 세개 이상의 단위자원을 요청하는경우
+시스템은 교착상태가 될 가능성이 있다.
+
+하버만 알고리즘.등
+
+High overhead 항상 시스템을 감시하고 있어야한다
+
+Low resource utilization safe state 유지를 위해, 사용되지 않는 자원이 존재해야만한다.
+
+Not practical: 가정 프로세스 수, 자원수 가 고정, 필요한 최대 자원 수 를 알고있음.
+
+
+좀 낙천적인 방법이다. 교착상태 탐지 및 복구.
+주기적으로 deadlock 발생 확인. 시스템이 deadlock인가? 어떤 프로세스가 deadlock 상태인가?
+
+Resource Allocation Graph (RAG) 사용. 데드락 검출? directed, bipartite Graph
+두개의 파트로 나눈다. 프로세서와 자원으로 그룹을 나눔. 한쪽으로만 연결된다.
+
+프로세스 터미네이션, 리소스 죽이는방법.
+
+deadlock 상태인 프로세스 중 일부 종료, termination cost model 종료 시킬 deadlock 상태의 프로세스 선택
+
+우선순위, 종류, 총 수행시간, 남은 수행 시간, 종료 비용.
+
+Lowest termination cost process first
+
+Minimum cost recovery 최소 비용으로 deadlock 상태를 해소할 수 있는 process 선택.
+
+
+
+
+
+
+
+
+
+paging system 이후
+
+segementation system
+프로텍션 부분에서 문제가 발생할수있는데
+
+논리적으로 나누어본다. 세그멘테이션 시스템. 프로그램을 논리적 block으로 분할함
+stack, heap, main procedure, shared lib.등 block의 크기가 다를수 있다(중요)- 미리 자를수가없다.
+미리 분할하지 않는다.
+
+메모리를 미리 분할하지 않는다. VPM과 유사.
+
+Segment sharing/protection이 용이 함
+
+address mapping 및 메모리 관리의 overhead가 큼.
+No internal fragmentation 짜르다보면 뭐가 나가서 서로 다른 크기의 빈공간이 생긴다.
+외부 단편화는 발생 할 수 있다.
+
+swap device에 논리적으로 분할된 segement가 존재한다.
+
+Non-continuous memory allocation 
+
+address mapping virtual address가 real address로 바뀌냐
+
+v = (s,d) s: segement number, d: displacement in a segment(오프셋)
+
+SMT가 있다. Address mapping mechanism paging system과 유사
+
+segment map table. SMT의 형태는 PMT와 유사하다. 
+
+SEGEMENT NUMBER, residence bit, secondary storage address,  segment length,  protection bits  , segment address in memory
+
+segment 크기가 다 다름. function이나. data가 있으면 그 녀석에 대해서 권한 r/w/x/a을 붙여놓으면 관리하기가 쉬울것
+
+
+
+
+
+8장 가상메모리 관리
+가상 메모리 non continuous allocation 사용자프로그램을 block으로 분할하여 적재/실행
+
+paging segmentation system. 관리 의 목적. cost model 비용 모델 다양한 최적화 기법, 가상 메모리 시스템 성능 최적화
+
+성능이란 표현은 매우 모호한 표현이다.  
+
+Page fault 해당 프로세스가 일시적으로 cpu반납하고 블록 상태로한다.
+그렇기에 발생률을 최소화 해야함. 
+
+주소 사상장치. address translation device 주소 사상을 효율적으로 수행하기 위해 사용
+
+Bit vectors
+page 사용 상황에 대한 정보를 기록하는 비트들. reference bit vector
+메모리에 적재된 각각의 page가 최근에 참조 되었는지를 표시. 
+운영 프로세스에 의해 참조되면 해당 page의 ref.bit를 1로 설정
+주기적으로 모든 reference bit
+
+update bit vector. page가 메모리에 적재된 후, 프로세스에 의해 수정 되었는지를 표시
+주기적 초기화 없음, update bit = 1 
+
