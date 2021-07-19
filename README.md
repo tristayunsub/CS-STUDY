@@ -44,3 +44,9 @@ https://jhnyang.tistory.com/132?category=815411
 어렵다
 # EH 현장프로젝트 VERILOG HDL을 통한 FPGA설계
 SPI MEMORY CONTROLLER 구현을 통해 회로 작동원리 이해 및 MODELSIM으로 테스트까지
+4일차 수업
+1.Semiconductor
+2.Semiconductor Chain
+3.Soc interface
+4. ASIC
+5. FPGA
