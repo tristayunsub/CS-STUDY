@@ -43,6 +43,10 @@ https://jhnyang.tistory.com/132?category=815411
 
 어렵다
 # EH 현장프로젝트 VERILOG HDL을 통한 FPGA설계
+
+![스크린샷(298)](https://user-images.githubusercontent.com/75001605/126116641-81129b0d-200c-4c5c-99e4-55bcdb9a5ecc.png)
+
+
 SPI MEMORY CONTROLLER 구현을 통해 회로 작동원리 이해 및 MODELSIM으로 테스트까지
 4일차 수업
 1.Semiconductor
