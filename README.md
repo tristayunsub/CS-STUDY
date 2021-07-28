@@ -42,17 +42,11 @@ TCP/IP 공부 열혈 TCP/IP 참조
 https://jhnyang.tistory.com/132?category=815411
 
 어렵다
+
+면접준비: https://www.youtube.com/watch?v=7ye03TMi5SU&ab_channel=%ED%85%8C%ED%97%A4%EB%9E%80%EB%B0%B8%EB%A6%AC
 # EH 현장프로젝트 VERILOG HDL을 통한 FPGA설계
 
 ![스크린샷(298)](https://user-images.githubusercontent.com/75001605/126116641-81129b0d-200c-4c5c-99e4-55bcdb9a5ecc.png)
 
 
 
-
-SPI MEMORY CONTROLLER 구현을 통해 회로 작동원리 이해 및 MODELSIM으로 테스트까지
-4일차 수업
-1.Semiconductor
-2.Semiconductor Chain
-3.Soc interface
-4. ASIC
-5. FPGA
