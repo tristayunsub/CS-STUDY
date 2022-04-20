@@ -1,6 +1,7 @@
 https://www.youtube.com/watch?v=k1gyh9BlOT8&list=PLXvgR_grOs1BFH-TuqFsfHqbh-gpMbFoy&ab_channel=%EB%84%90%EB%84%90%ED%95%9C%EA%B0%9C%EB%B0%9C%EC%9E%90TV
 
-
+https://www.youtube.com/watch?v=_3Z6uivnsd4&list=PL2fxOURY4wI4gBPkEy1pQngCF_aMOqnRV&index=3&ab_channel=%ED%8F%AC%ED%95%AD%EA%B3%B5%EB%8C%80%ED%86%B5%EC%8B%A0%EB%B0%8F%EC%A0%95%EB%B3%B4%EC%8B%9C%EC%8A%A4%ED%85%9C%EC%97%B0%EA%B5%AC%EC%8B%A4
+포항공대 네트웤 학습
 
 개발자를 위한 네트워크. osi 7 layer를 전체 공부하지말고.. 완벽하게 개념만 다루고 있는거다.
 
