@@ -75,7 +75,7 @@ critical section(임계 영역)
 
 
 
-
+```
 do{
   entry section
       critical section
@@ -83,14 +83,22 @@ do{
        remainder secton
   
 } while (TRUE)
+```
+
+
 
 문제 해결책 조건 3가지
 
 1.상호배제 -> 한번에 하나의 스레드만 cs에서 실행
+
+
 2.progress 진행 -> 만약에 cs가 비어있고, 어떤 프로세싱한 스레드들이 cs에 들어가길 원한다면. 그중하나는 실행될수 있도록 해야한다. 유지성
+
 3. bounded waiting( 한정된 대기)-> 프로세스가 무한정 대기하면 안된다.
 
+
 thread-unsafe? 를 조심해라.
+
 class api 문서.
 
 날짜 관련해서
@@ -101,5 +109,7 @@ Date formats are not synchronized. it is recommended to create
 seperate format instances for each thread. if multiple threads
 acccess a format concurrently, it must be synchronized externally.
   
+
 자바에서 기본적으로 사용한다고 믿고 쓰면안된다.
+
 thread safe한지 확인해야함.
