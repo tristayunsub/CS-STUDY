@@ -10,3 +10,10 @@ c# 서버개발
 https://wiserloner.tistory.com/708?category=831127
 
 파일과 소켓?
+
+
+
+
+https://velog.io/@rhdmstj17/%EC%86%8C%EC%BC%93%EA%B3%BC-%EC%9B%B9%EC%86%8C%EC%BC%93-%ED%95%9C-%EB%B2%88%EC%97%90-%EC%A0%95%EB%A6%AC-2
+
+웹소켓? http, tcp ip 소켓
