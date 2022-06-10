@@ -3,3 +3,8 @@ https://www.youtube.com/watch?v=jjkYXaqgR40&list=PLWLQu6qSTKBhn-nDdF71LmydeoR1PA
 dhcp 
 
 dns 등등 서버 구축하기
+
+
+https://for-development.tistory.com/19
+
+pintos?프로젝트 mini os project
